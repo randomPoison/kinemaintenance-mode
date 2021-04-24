@@ -274,7 +274,20 @@ namespace Unity.SnapshotDebugger
 
         void OnEarlyUpdate()
         {
-            if (!rewind && !_wasRewinding)
+
+            if (IsState(State.Rewind))
+            {
+                var snapshot = _storage.Retrieve(rewindTime);
+
+                if (snapshot != null)
+                {
+                    time = snapshot.startTimeInSeconds;
+                    deltaTime = snapshot.durationInSeconds;
+
+                    registry.RestoreSnapshot(snapshot);
+                }
+            }
+            else if (!_wasRewinding)
             {
                 deltaTime = Time.deltaTime;
             }
@@ -300,18 +313,6 @@ namespace Unity.SnapshotDebugger
                 }
 
                 _wasRewinding = false;
-            }
-            else if (IsState(State.Rewind))
-            {
-                var snapshot = _storage.Retrieve(rewindTime);
-
-                if (snapshot != null)
-                {
-                    time = snapshot.startTimeInSeconds;
-                    deltaTime = snapshot.durationInSeconds;
-
-                    registry.RestoreSnapshot(snapshot);
-                }
             }
         }
 
