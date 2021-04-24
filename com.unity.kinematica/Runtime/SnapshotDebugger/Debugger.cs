@@ -274,7 +274,6 @@ namespace Unity.SnapshotDebugger
 
         void OnEarlyUpdate()
         {
-
             if (IsState(State.Rewind))
             {
                 var snapshot = _storage.Retrieve(rewindTime);
