@@ -1,0 +1,10 @@
+{
+  "name": "com.random-poison.kinematica-fixes",
+  "displayName": "Kinematica Fixes and Extensions",
+  "version": "0.8.0-preview",
+  "unity": "2019.4",
+  "description": "Fixes and extensions for Kinematica 0.8 while active development is on hold.",
+  "dependencies": {
+    "com.unity.kinematica": "0.8.0-preview"
+  }
+}
